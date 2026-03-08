@@ -153,27 +153,5 @@ if __name__ == "__main__":
     main()
 ```
 
-## 与Isaac Lab官方框架的关联
-本项目的极简实现完全对应Isaac Lab的核心设计，可无缝衔接官方源码学习：
-1. **注册器对应**：本项目`registry.py` → Isaac Lab `isaaclab/utils/registry.py`
-2. **机器人注册对应**：本项目`ROBOT_REGISTRY` → Isaac Lab `isaaclab.assets.robot.RobotRegistry`
-3. **环境注册对应**：本项目`ENV_REGISTRY` → Isaac Lab `isaaclab.envs.EnvRegistry`
-4. **调用逻辑对应**：本项目`train.py` → Isaac Lab `scripts/reinforcement_learning/rsl_rl/train.py`
-
-Isaac Lab中通过`--robot`/`--task`命令行参数指定名字，底层就是通过本项目的注册机制实现动态加载。
-
-## 扩展示例
-基于本项目的注册机制，**新增机器人配置（如Aliengo）** 仅需3步，主程序无需任何修改：
-1. 在`robots/`下新建`aliengo/`目录，创建`aliengo_cfg.py`并添加装饰器；
-2. 在`aliengo/__init__.py`中导出配置类；
-3. 在`robots/__init__.py`中导入`aliengo_cfg`。
-
-运行`train.py`即可自动识别新注册的机器人，完美复现Isaac Lab的扩展逻辑。
-
 ## 相关资料
-- **Isaac Lab官方文档**：https://isaac-sim.github.io/IsaacLab/main/
 - **核心学习文章**：[【四足机器人强化学习运控基础】Isaac Lab框架深入理解](https://mp.weixin.qq.com/s/-CRl_me2POQjhjga6-OyIw)
-- **Isaac Lab官方源码**：https://github.com/NVIDIA-Omniverse/IsaacLab
-
-## 许可证
-本项目基于BSD-3-Clause许可证，与Isaac Lab官方许可证保持一致，可自由用于学习和商业开发。
